@@ -123,48 +123,56 @@ export default function Home() {
         <CharacterGalleryClient />
       </div>
 
-      <div className="max-w-[1920px] mx-auto px-20 grid grid-cols-10  gap-x-5">
-        <div className="col-span-4 flex flex-1 flex-col justify-between">
-          <h2 className="font-compacta font-normal text-[48px] leading-[1.08] tracking-normal align-middle uppercase">
-            Где нас найти?
-          </h2>
-          <div className='flex flex-col gap-8'>
-            <div className="flex items-center gap-5">
-              <Link
-                href="https://www.instagram.com/panch.claster/"
-                target="_blank"
-                className="grayscale hover:grayscale-0 transition-all duration-300"
-              >
-                <IconInsta />
-              </Link>
+      <div className="grid grid-cols-[1fr_min(1920px,100%)_1fr] overflow-hidden">
+        <div className="col-start-2 px-20 grid grid-cols-10 gap-x-5">
+          <div className="col-span-4 flex flex-1 flex-col justify-between">
+            <h2 className="font-compacta font-normal text-[48px] leading-[1.08] tracking-normal align-middle uppercase">
+              Где нас найти?
+            </h2>
+            <div className="flex flex-col gap-8">
+              <div className="flex items-center gap-5">
+                <Link
+                  href="https://www.instagram.com/panch.claster/"
+                  target="_blank"
+                  className="grayscale hover:grayscale-0 transition-all duration-300"
+                >
+                  <IconInsta />
+                </Link>
 
-              <Link
-                className="font-bold text-[28px] leading-[1.13] tracking-[-0.01em] align-middle uppercase"
-                href="tel:89992223333"
-              >
-                +7 999 999-99-99
-              </Link>
-            </div>
+                <Link
+                  className="font-bold text-[28px] leading-[1.13] tracking-[-0.01em] align-middle uppercase"
+                  href="tel:89992223333"
+                >
+                  +7 999 999-99-99
+                </Link>
+              </div>
 
-            <div className="flex flex-col gap-2 font-bold text-[28px] leading-[1.13] tracking-[-0.01em] align-middle uppercase pb-[120px]">
-              <p>Красноярский рабочий 150 / строение 46</p>
-              <p>{'[этаж 4]'}</p>
+              <div className="flex flex-col gap-2 font-bold text-[28px] leading-[1.13] tracking-[-0.01em] align-middle uppercase pb-[120px]">
+                <p>Красноярский рабочий 150 / строение 46</p>
+                <p>{'[этаж 4]'}</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="col-span-6 overflow-hidden h-[900px] rounded-sm">
-        
-          <iframe
-            src="https://yandex.ru/map-widget/v1/?um=constructor%3A4079059cb6ac2debc99f721e03ad6bd204c472cdb6fbf973323d97072ca14d6a&amp;source=constructor"
-            width="100%"
-            height="100%"
-            className=" top-0 left-0 w-full h-full min-h-100 border-0 md:grayscale-100 md:hover:scale-125 md:hover:grayscale-0 transition-all duration-300"
-            allowFullScreen
-            title="Yandex Map"
-          />
+          <div className="col-span-6 col-start-5 overflow-hidden h-[900px] rounded-sm mr-[-30vw] ">
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?um=constructor%3A62a7e1b1eec43b453cbc05109555ddee78bac96d3db77e4395f32fb9004e8513&amp;source=constructor"
+              width="100%"
+              height="100%"
+              className=" top-0 left-0 w-full h-full min-h-100 border-0 md:grayscale-100 md:hover:scale-125 md:hover:grayscale-0 transition-all duration-300"
+              allowFullScreen
+              title="Yandex Map"
+            />
+          </div>
         </div>
       </div>
+
+      <footer className="flex justify-center text-[#757382] py-8">
+        <p className="font-medium text-[18px] leading-[1.32] tracking-normal align-middle">
+          © 2026 Панч_кластер. Все скриншоты принадлежат их соответствующим
+          владельцам
+        </p>
+      </footer>
     </main>
   );
 }
