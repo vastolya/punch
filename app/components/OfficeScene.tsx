@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF, Environment, ContactShadows } from "@react-three/drei";
 import { DoubleSide, Mesh, Material, MeshStandardMaterial } from "three";
@@ -22,10 +22,37 @@ function ReadySignal() {
 }
 
 export default function OfficeScene({ scale = 0.09 }: { scale?: number }) {
+  const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([15, 10, 15]);
+  const [fov, setFov] = useState(50);
+
+  useEffect(() => {
+    const updateCamera = () => {
+      const width = window.innerWidth;
+
+      if (width <= 768) {
+        // Мобильные устройства
+        setCameraPosition([20, 12, 20]);
+        setFov(60);
+      } else if (width <= 1024) {
+        // Планшеты
+        setCameraPosition([18, 11, 18]);
+        setFov(55);
+      } else {
+        // Десктоп
+        setCameraPosition([15, 10, 15]);
+        setFov(50);
+      }
+    };
+
+    updateCamera();
+    window.addEventListener("resize", updateCamera);
+    return () => window.removeEventListener("resize", updateCamera);
+  }, []);
+
   return (
     <div className="w-full h-full">
       <Canvas
-       camera={{ position: [15, 10, 15], fov: 50 }}
+       camera={{ position: cameraPosition, fov: fov }}
         shadows
       >
         <ambientLight intensity={0.5} />

@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useCallback, useMemo, useRef, useState } from 'react';
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, Environment } from '@react-three/drei';
 import { Box3, Group, Vector3 } from 'three';
@@ -59,15 +59,34 @@ export default function CharacterCard({
   character: CharacterData;
 }) {
   const [open, setOpen] = useState(false);
+  const [cameraFov, setCameraFov] = useState(45);
+
+  useEffect(() => {
+    const updateCamera = () => {
+      const width = window.innerWidth;
+
+      if (width <= 768) {
+        setCameraFov(55);
+      } else if (width <= 1024) {
+        setCameraFov(50);
+      } else {
+        setCameraFov(45);
+      }
+    };
+
+    updateCamera();
+    window.addEventListener("resize", updateCamera);
+    return () => window.removeEventListener("resize", updateCamera);
+  }, []);
 
   return (
     <>
       <div
-        className="grayscale hover:grayscale-0 flex flex-col  overflow-hidden w-full shrink-0 select-none cursor-pointer border-2 border-dashed border-[#E4E4EC] transition-colors  rounded-sm px-5 py-8 col-span-2"
+        className="grayscale hover:grayscale-0 flex flex-col  overflow-hidden w-full shrink-0 select-none cursor-pointer border-2 border-dashed border-[#E4E4EC] transition-colors  rounded-sm px-[clamp(0.625rem,1.042vw,1.25rem)] py-[clamp(1rem,1.667vw,2rem)] col-span-2"
         onClick={() => setOpen(true)}
       >
-        <div className="h-[376px] w-full ">
-          <Canvas camera={{ position: [0, 1, 3], fov: 45 }}>
+        <div className="h-[clamp(235px,19.583vw,376px)] w-full ">
+          <Canvas camera={{ position: [0, 1, 3], fov: cameraFov }}>
             <ambientLight intensity={0.6} />
             <directionalLight position={[3, 5, 3]} intensity={1.2} />
             <Suspense fallback={null}>
@@ -77,11 +96,11 @@ export default function CharacterCard({
           </Canvas>
         </div>
 
-        <div className="flex flex-col gap-2 pt-4">
-          <h2 className=" font-bold text-[28px] leading-[1.13] tracking-[-0.01em] text-center align-middle uppercase">
+        <div className="flex flex-col gap-[clamp(0.25rem,0.417vw,0.5rem)] pt-[clamp(0.5rem,0.833vw,1rem)]">
+          <h2 className=" font-bold text-[clamp(1.125rem,1.458vw,1.75rem)] leading-[1.13] tracking-[-0.01em] text-center align-middle uppercase">
             {character.role}
           </h2>
-          <p className=" font-medium text-[18px] leading-[1.32] tracking-normal text-center align-middle">
+          <p className=" font-medium text-[clamp(0.875rem,0.938vw,1.125rem)] leading-[1.32] tracking-normal text-center align-middle">
             {character.name}
           </p>
         </div>

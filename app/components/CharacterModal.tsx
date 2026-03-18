@@ -1,23 +1,37 @@
-"use client";
+'use client';
 
-import { Suspense, useCallback, useMemo, useRef, useEffect } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls, useGLTF, Environment } from "@react-three/drei";
-import { Box3, Group, Vector3 } from "three";
-import { KTX2Loader } from "three-stdlib";
-import { GLTFLoader } from "three-stdlib";
-import { CharacterData } from "./CharacterCard";
+import {
+  Suspense,
+  useCallback,
+  useMemo,
+  useRef,
+  useEffect,
+  useState,
+} from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { OrbitControls, useGLTF, Environment } from '@react-three/drei';
+import { Box3, Group, Vector3 } from 'three';
+import { KTX2Loader } from 'three-stdlib';
+import { GLTFLoader } from 'three-stdlib';
+import { CharacterData } from './CharacterCard';
 
 function CharacterModelLarge({ modelPath }: { modelPath: string }) {
   const { gl } = useThree();
   const extendLoader = useCallback(
     (loader: GLTFLoader) => {
-      const ktx2 = new KTX2Loader().setTranscoderPath("/basis/").detectSupport(gl);
+      const ktx2 = new KTX2Loader()
+        .setTranscoderPath('/basis/')
+        .detectSupport(gl);
       loader.setKTX2Loader(ktx2);
     },
     [gl]
   );
-  const { scene: rawScene } = useGLTF(modelPath, undefined, undefined, extendLoader);
+  const { scene: rawScene } = useGLTF(
+    modelPath,
+    undefined,
+    undefined,
+    extendLoader
+  );
   const scene = useMemo(() => rawScene.clone(true), [rawScene]);
   const ref = useRef<Group>(null);
 
@@ -45,13 +59,33 @@ type Props = {
 };
 
 export default function CharacterModal({ character, onClose }: Props) {
+  const [cameraFov, setCameraFov] = useState(45);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === 'Escape') onClose();
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
+
+  useEffect(() => {
+    const updateCamera = () => {
+      const width = window.innerWidth;
+
+      if (width <= 768) {
+        setCameraFov(60);
+      } else if (width <= 1024) {
+        setCameraFov(52);
+      } else {
+        setCameraFov(45);
+      }
+    };
+
+    updateCamera();
+    window.addEventListener('resize', updateCamera);
+    return () => window.removeEventListener('resize', updateCamera);
+  }, []);
 
   return (
     <div
@@ -59,20 +93,20 @@ export default function CharacterModal({ character, onClose }: Props) {
       onClick={onClose}
     >
       <div
-        className="relative flex w-full max-w-6xl mx-4 h-[90vh] bg-zinc-900 border border-zinc-700 rounded-2xl overflow-hidden"
+        className="relative flex flex-col w-full max-w-[clamp(400px,36.042vw,692px)] p-[clamp(1.25rem,2.083vw,2.5rem)] h-fit bg-[#E4E4EC] border border-zinc-700 rounded-sm overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 text-zinc-400 hover:text-white transition-colors text-2xl leading-none"
+          className="absolute top-[clamp(0.625rem,1.042vw,1.25rem)] right-[clamp(0.625rem,1.042vw,1.25rem)] z-10 text-zinc-400 hover:text-white transition-colors text-[clamp(1.125rem,1.25vw,1.5rem)] leading-none"
         >
           ✕
         </button>
 
         {/* 3D model */}
-        <div className="w-1/2 h-full shrink-0">
-          <Canvas camera={{ position: [0, 3, 2], fov: 45 }}>
+        <div className="w-full h-[clamp(275px,22.917vw,440px)] shrink-0 mx-auto pb-[clamp(0.625rem,1.042vw,1.25rem)]">
+          <Canvas camera={{ position: [0, 3, 2], fov: cameraFov }}>
             <ambientLight intensity={0.6} />
             <directionalLight position={[3, 5, 3]} intensity={1.2} />
             <Suspense fallback={null}>
@@ -90,23 +124,28 @@ export default function CharacterModal({ character, onClose }: Props) {
         </div>
 
         {/* Info */}
-        <div className="flex flex-col justify-center gap-4 p-8">
+        <div className="flex flex-col gap-[clamp(1.25rem,2.083vw,2.5rem)]">
           <div>
-            <h2 className="text-white text-3xl font-bold tracking-tight">{character.name}</h2>
-            <p className="text-zinc-400 mt-1">{character.role}</p>
+            <p className="pb-[clamp(0.25rem,0.417vw,0.5rem)] font-compacta font-normal text-[clamp(1.75rem,2.5vw,3rem)] leading-[1.08] tracking-normal align-middle uppercase">
+              {character.role}
+            </p>
+            <h2 className=" font-bold text-[clamp(1.125rem,1.458vw,1.75rem)] leading-[1.13] tracking-[-0.01em] align-middle uppercase">
+              {character.name}
+            </h2>
           </div>
 
           {character.bio && (
-            <p className="text-zinc-300 text-sm leading-relaxed">{character.bio}</p>
+            <p className=" font-medium text-[clamp(0.875rem,0.938vw,1.125rem)] leading-[1.32] tracking-normal align-middle">
+              {character.bio}
+            </p>
           )}
 
           <div>
-            <p className="text-zinc-500 text-xs uppercase tracking-widest mb-2">Навыки</p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-[clamp(0.375rem,0.625vw,0.75rem)]">
               {character.skills.map((skill) => (
                 <span
                   key={skill}
-                  className="text-sm px-3 py-1 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-600"
+                  className="font-medium text-[clamp(0.875rem,0.938vw,1.125rem)] leading-[1.32] tracking-normal align-middle p-[clamp(0.25rem,0.417vw,0.5rem)] bg-white rounded-[500px]"
                 >
                   {skill}
                 </span>
