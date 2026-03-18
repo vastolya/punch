@@ -2,13 +2,25 @@
 
 @font-face {
   font-family: "Compacta";
-  src: url("/fonts/Compacta%20LT%20Light%20Compress.otf") format("opentype");
+  src: url("/fonts/Compacta-BT-Roman.ttf") format("truetype");
+
+}
+
+@font-face {
+  font-family: "Kinetika";
+  src: url("/fonts/kinetika-regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @theme {
   --font-compacta: "Compacta", sans-serif;
+  --font-kinetika: "Kinetika", sans-serif;
+}
+
+body {
+  font-family: "Kinetika", sans-serif;
+  color: #282635;
 }
 
 
