@@ -129,7 +129,7 @@ const characters: CharacterData[] = [
   {
     modelPath: '/models/people/man_09.glb',
     name: 'Степан Петраченко',
-    role: 'Продюссер',
+    role: 'Продюсер',
     skills: [
       'Управление проектами',
       'Работа с клиентами',
