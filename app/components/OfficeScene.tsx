@@ -24,7 +24,7 @@ function ReadySignal() {
   return null;
 }
 
-export default function OfficeScene({ scale = 0.09 }: { scale?: number }) {
+export default function OfficeScene({ scale = 1 }: { scale?: number }) {
   const [cameraPosition, setCameraPosition] = useState<
     [number, number, number]
   >([15, 10, 15]);
