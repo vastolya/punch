@@ -37,12 +37,12 @@ export default function Home() {
           <div className="md:col-span-5 font-kinetika font-medium text-[1rem] md:text-[clamp(0.875rem,0.938vw,1.125rem)] leading-[1.32] tracking-normal flex flex-col gap-2 md:gap-[clamp(0.25rem,0.417vw,0.5rem)] order-2">
             <p>
               Мы сняли большой офис и превратили его в место, где можно не
-              только работать над проектами, но и развивать креативную среду
-              города
+              только работать <br className="hidden md:flex" /> над проектами,
+              но и развивать креативную среду города
             </p>
             <p>
-              Здесь проходят мастер-классы, встречи, обучающие программы и
-              открытые события
+              Здесь проходят мастер-классы, встречи, обучающие{' '}
+              <br className="hidden md:flex" /> программы и открытые события
             </p>
           </div>
 
@@ -114,7 +114,8 @@ export default function Home() {
 
             <div className="w-full md:w-fit">
               <p className="font-medium text-[0.875rem] md:text-[clamp(0.875rem,0.938vw,1.125rem)] leading-[1.32] tracking-normal items-center text-start flex justify-center h-full">
-                Чтобы делиться опытом, запускать проекты и создавать новые идеи
+                Чтобы делиться опытом, запускать проекты{' '}
+                <br className="hidden md:flex" /> и создавать новые идеи
               </p>
             </div>
           </div>
