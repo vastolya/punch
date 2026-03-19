@@ -10,7 +10,7 @@ import {
 } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, useGLTF, Environment } from '@react-three/drei';
-import { Box3, Group, Vector3 } from 'three';
+import { Box3, DoubleSide, Group, Mesh, Vector3 } from 'three';
 import { KTX2Loader } from 'three-stdlib';
 import { GLTFLoader } from 'three-stdlib';
 import { CharacterData } from './CharacterCard';
@@ -32,7 +32,21 @@ function CharacterModelLarge({ modelPath }: { modelPath: string }) {
     undefined,
     extendLoader
   );
-  const scene = useMemo(() => rawScene.clone(true), [rawScene]);
+  const scene = useMemo(() => {
+    const clonedScene = rawScene.clone(true);
+    clonedScene.traverse((child) => {
+      if (child instanceof Mesh) {
+        if (Array.isArray(child.material)) {
+          child.material.forEach((mat) => {
+            mat.side = DoubleSide;
+          });
+        } else {
+          child.material.side = DoubleSide;
+        }
+      }
+    });
+    return clonedScene;
+  }, [rawScene]);
   const ref = useRef<Group>(null);
 
   const offsetY = useMemo(() => {
@@ -117,8 +131,6 @@ export default function CharacterModal({ character, onClose }: Props) {
               enableZoom={false}
               enablePan={false}
               enableRotate={true}
-              minPolarAngle={Math.PI / 4}
-              maxPolarAngle={Math.PI / 1.8}
             />
           </Canvas>
         </div>
