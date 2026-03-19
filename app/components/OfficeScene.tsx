@@ -1,14 +1,17 @@
-"use client";
+'use client';
 
-import { Suspense, useEffect, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, useGLTF, Environment, ContactShadows } from "@react-three/drei";
-import { DoubleSide, Mesh, Material, MeshStandardMaterial } from "three";
+import { Suspense, useEffect, useState } from 'react';
+import { Canvas } from '@react-three/fiber';
+import {
+  OrbitControls,
+  useGLTF,
+  Environment,
+  ContactShadows,
+} from '@react-three/drei';
+import { DoubleSide, Mesh, Material, MeshStandardMaterial } from 'three';
 
 function OfficeModel({ scale }: { scale: number }) {
-  const { scene } = useGLTF("/models/office.glb");
-
-
+  const { scene } = useGLTF('/models/office.glb');
 
   return <primitive object={scene} scale={scale} />;
 }
@@ -16,13 +19,15 @@ function OfficeModel({ scale }: { scale: number }) {
 // Монтируется только когда Suspense разрешился — модель готова к показу
 function ReadySignal() {
   useEffect(() => {
-    window.dispatchEvent(new Event("office-scene-ready"));
+    window.dispatchEvent(new Event('office-scene-ready'));
   }, []);
   return null;
 }
 
 export default function OfficeScene({ scale = 0.09 }: { scale?: number }) {
-  const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([15, 10, 15]);
+  const [cameraPosition, setCameraPosition] = useState<
+    [number, number, number]
+  >([15, 10, 15]);
   const [fov, setFov] = useState(50);
 
   useEffect(() => {
@@ -31,36 +36,39 @@ export default function OfficeScene({ scale = 0.09 }: { scale?: number }) {
 
       if (width <= 768) {
         // Мобильные устройства
-        setCameraPosition([20, 12, 20]);
+        setCameraPosition([1.5, 1.5, 1.5]);
         setFov(60);
       } else if (width <= 1024) {
         // Планшеты
-        setCameraPosition([18, 11, 18]);
+        setCameraPosition([1.5, 1.5, 1.5]);
         setFov(55);
+        0.5;
       } else {
         // Десктоп
-        setCameraPosition([15, 10, 15]);
+        setCameraPosition([1.5, 1.5, 1.5]);
         setFov(50);
       }
     };
 
     updateCamera();
-    window.addEventListener("resize", updateCamera);
-    return () => window.removeEventListener("resize", updateCamera);
+    window.addEventListener('resize', updateCamera);
+    return () => window.removeEventListener('resize', updateCamera);
   }, []);
 
   return (
     <div className="w-full h-full">
-      <Canvas
-       camera={{ position: cameraPosition, fov: fov }}
-        shadows
-      >
+      <Canvas camera={{ position: cameraPosition, fov: fov }} shadows>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} castShadow />
         <Suspense fallback={null}>
           <OfficeModel scale={scale} />
           <Environment preset="city" />
-          <ContactShadows position={[0, -0.01, 0]} opacity={0.4} scale={20} blur={1.5} />
+          <ContactShadows
+            position={[0, -0.01, 0]}
+            opacity={0.4}
+            scale={20}
+            blur={1.5}
+          />
           <ReadySignal />
         </Suspense>
         <OrbitControls
