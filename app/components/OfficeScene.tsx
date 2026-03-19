@@ -27,7 +27,7 @@ function ReadySignal() {
 export default function OfficeScene({ scale = 1 }: { scale?: number }) {
   const [cameraPosition, setCameraPosition] = useState<
     [number, number, number]
-  >([15, 10, 15]);
+  >([1.5, 1.5, 1.5]);
   const [fov, setFov] = useState(50);
 
   useEffect(() => {
