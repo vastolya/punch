@@ -10,7 +10,7 @@ export default function Home() {
       <LoadingScreen />
 
       {/* Hero Section with 3D Scene */}
-      <div className="h-[60vh] md:h-[clamp(500px,46.875vw,900px)] relative max-w-[1920px] mx-auto">
+      <div className="h-[60vh] md:h-[clamp(500px,26.875vw,900px)] relative max-w-[1920px] mx-auto">
         <p className="top-6 left-6 md:top-[clamp(2.5rem,4.167vw,5rem)] md:left-[clamp(2.5rem,4.167vw,5rem)] font-compacta font-normal text-[2rem] md:text-[clamp(1.75rem,2.5vw,3rem)] leading-[1.08] tracking-normal text-center align-middle uppercase absolute z-10">
           панч
         </p>
@@ -18,7 +18,7 @@ export default function Home() {
           кластер
         </p>
 
-        <div className="absolute h-[150%] w-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute h-[170%] w-full top-2/3 md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <OfficeSceneClient />
         </div>
       </div>
@@ -26,7 +26,6 @@ export default function Home() {
       {/* Info Section */}
       <div className="max-w-[1920px] mx-auto px-5 md:px-[clamp(1.25rem,4.167vw,5rem)]">
         <div className="grid grid-cols-1 md:grid-cols-10 gap-y-10 md:gap-y-[clamp(2.5rem,4.167vw,5rem)] gap-x-4 md:gap-x-[clamp(0.625rem,1.042vw,1.25rem)] pt-12 md:pt-[clamp(3.75rem,6.25vw,7.5rem)]">
-
           {/* Main Description */}
           <div className="md:col-span-5 font-compacta order-1">
             <p className="font-normal text-[1.5rem] md:text-[clamp(1.75rem,2.5vw,3rem)] leading-[1.08] tracking-normal text-left md:text-right align-middle uppercase">
@@ -37,10 +36,13 @@ export default function Home() {
           {/* Secondary Description */}
           <div className="md:col-span-5 font-kinetika font-medium text-[1rem] md:text-[clamp(0.875rem,0.938vw,1.125rem)] leading-[1.32] tracking-normal flex flex-col gap-2 md:gap-[clamp(0.25rem,0.417vw,0.5rem)] order-2">
             <p>
-              Мы сняли большой офис и превратили его в место, где можно не только работать над проектами, но и развивать креативную среду города
+              Мы сняли большой офис и превратили его в место, где можно не
+              только работать над проектами, но и развивать креативную среду
+              города
             </p>
             <p>
-              Здесь проходят мастер-классы, встречи, обучающие программы и открытые события
+              Здесь проходят мастер-классы, встречи, обучающие программы и
+              открытые события
             </p>
           </div>
 
@@ -175,7 +177,8 @@ export default function Home() {
       {/* Footer */}
       <footer className="flex justify-center text-[#757382] py-6 md:py-[clamp(1rem,1.667vw,2rem)] px-5">
         <p className="font-medium text-[0.75rem] md:text-[clamp(0.875rem,0.938vw,1.125rem)] leading-[1.32] tracking-normal align-middle text-center">
-          © 2026 Панч_кластер. Все скриншоты принадлежат их соответствующим владельцам
+          © 2026 Панч_кластер. Все скриншоты принадлежат их соответствующим
+          владельцам
         </p>
       </footer>
     </main>
