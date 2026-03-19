@@ -18,13 +18,13 @@ export default function Home() {
           кластер
         </p>
 
-        <div className="absolute h-[170%] w-full top-2/3 md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute h-full md:h-[150%] w-full top-2/3 md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <OfficeSceneClient />
         </div>
       </div>
 
       {/* Info Section */}
-      <div className="max-w-[1920px] mx-auto px-5 md:px-[clamp(1.25rem,4.167vw,5rem)]">
+      <div className="max-w-[1920px] mx-auto px-5 md:px-[clamp(1.25rem,4.167vw,5rem)] z-10">
         <div className="grid grid-cols-1 md:grid-cols-10 gap-y-10 md:gap-y-[clamp(2.5rem,4.167vw,5rem)] gap-x-4 md:gap-x-[clamp(0.625rem,1.042vw,1.25rem)] pt-12 md:pt-[clamp(3.75rem,6.25vw,7.5rem)]">
           {/* Main Description */}
           <div className="md:col-span-5 font-compacta order-1">

@@ -24,7 +24,7 @@ function ReadySignal() {
   return null;
 }
 
-export default function OfficeScene({ scale = 1 }: { scale?: number }) {
+export default function OfficeScene({ scale = 2 }: { scale?: number }) {
   const [cameraPosition, setCameraPosition] = useState<
     [number, number, number]
   >([1.5, 1.5, 1.5]);
@@ -36,7 +36,7 @@ export default function OfficeScene({ scale = 1 }: { scale?: number }) {
 
       if (width <= 768) {
         // Мобильные устройства
-        setCameraPosition([1.5, 1.5, 1.5]);
+        setCameraPosition([1, 1, 1]);
         setFov(60);
       } else if (width <= 1024) {
         // Планшеты
