@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(cd \"D:/web project/032-punch/punch\" && npm install three @react-three/fiber @react-three/drei)",
-      "Bash(cd \"D:/web project/032-punch/punch\" && npm install --save-dev @types/three)"
+      "Bash(cd \"D:/web project/032-punch/punch\" && npm install --save-dev @types/three)",
+      "Bash(cat:*)"
     ]
   }
 }

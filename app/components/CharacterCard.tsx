@@ -82,10 +82,10 @@ export default function CharacterCard({
   return (
     <>
       <div
-        className="grayscale hover:grayscale-0 flex flex-col  overflow-hidden w-full shrink-0 select-none cursor-pointer border-2 border-dashed border-[#E4E4EC] transition-colors  rounded-sm px-[clamp(0.625rem,1.042vw,1.25rem)] py-[clamp(1rem,1.667vw,2rem)] col-span-2"
+        className="grayscale hover:grayscale-0 flex flex-col overflow-hidden w-full shrink-0 select-none cursor-pointer border-2 border-dashed border-[#E4E4EC] transition-colors rounded-sm px-4 md:px-[clamp(0.625rem,1.042vw,1.25rem)] py-6 md:py-[clamp(1rem,1.667vw,2rem)] lg:col-span-2"
         onClick={() => setOpen(true)}
       >
-        <div className="h-[clamp(235px,19.583vw,376px)] w-full ">
+        <div className="h-[280px] md:h-[clamp(235px,19.583vw,376px)] w-full">
           <Canvas camera={{ position: [0, 1, 3], fov: cameraFov }}>
             <ambientLight intensity={0.6} />
             <directionalLight position={[3, 5, 3]} intensity={1.2} />
@@ -96,11 +96,11 @@ export default function CharacterCard({
           </Canvas>
         </div>
 
-        <div className="flex flex-col gap-[clamp(0.25rem,0.417vw,0.5rem)] pt-[clamp(0.5rem,0.833vw,1rem)]">
-          <h2 className=" font-bold text-[clamp(1.125rem,1.458vw,1.75rem)] leading-[1.13] tracking-[-0.01em] text-center align-middle uppercase">
+        <div className="flex flex-col gap-1 md:gap-[clamp(0.25rem,0.417vw,0.5rem)] pt-3 md:pt-[clamp(0.5rem,0.833vw,1rem)]">
+          <h2 className="font-bold text-[1.25rem] md:text-[clamp(1.125rem,1.458vw,1.75rem)] leading-[1.13] tracking-[-0.01em] text-center align-middle uppercase">
             {character.role}
           </h2>
-          <p className=" font-medium text-[clamp(0.875rem,0.938vw,1.125rem)] leading-[1.32] tracking-normal text-center align-middle">
+          <p className="font-medium text-[0.875rem] md:text-[clamp(0.875rem,0.938vw,1.125rem)] leading-[1.32] tracking-normal text-center align-middle">
             {character.name}
           </p>
         </div>

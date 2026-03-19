@@ -117,7 +117,7 @@ const characters: CharacterData[] = [
 
 export default function CharacterGallery() {
   return (
-    <section className="grid grid-cols-10 gap-y-5 gap-x-5">
+    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 gap-5">
       {characters.map((character) => (
         <CharacterCard key={character.name} character={character} />
       ))}
