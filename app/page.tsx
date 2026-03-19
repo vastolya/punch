@@ -18,7 +18,7 @@ export default function Home() {
           кластер
         </p>
 
-        <div className="absolute h-full md:h-[150%] w-full top-2/3 md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute h-[400px] md:h-[150%] w-full top-2/3 md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <OfficeSceneClient />
         </div>
       </div>
