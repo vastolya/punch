@@ -93,7 +93,7 @@ export default function CharacterModal({ character, onClose }: Props) {
       onClick={onClose}
     >
       <div
-        className="relative flex flex-col w-full max-w-[clamp(400px,36.042vw,692px)] p-3 md:p-[clamp(1.25rem,2.083vw,2.5rem)] h-fit max-h-[85vh] overflow-y-auto bg-[#E4E4EC] border border-zinc-700 rounded-sm"
+        className="relative flex flex-col w-full max-w-[clamp(400px,36.042vw,692px)] p-3 md:p-[clamp(1.25rem,2.083vw,2.5rem)] h-fit bg-[#E4E4EC] border border-zinc-700 rounded-sm"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
@@ -106,7 +106,7 @@ export default function CharacterModal({ character, onClose }: Props) {
 
         {/* 3D model */}
         <div className="w-full h-[200px] md:h-[clamp(275px,22.917vw,440px)] shrink-0 mx-auto pb-2 md:pb-[clamp(0.625rem,1.042vw,1.25rem)]">
-          <Canvas camera={{ position: [0, 3, 2], fov: cameraFov }}>
+          <Canvas camera={{ position: [0, 1, 3], fov: cameraFov }}>
             <ambientLight intensity={0.6} />
             <directionalLight position={[3, 5, 3]} intensity={1.2} />
             <Suspense fallback={null}>
