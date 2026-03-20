@@ -98,7 +98,7 @@ const characters: CharacterData[] = [
   },
   {
     modelPath: '/models/people/man_07.glb',
-    name: 'Ангелина Баранкова',
+    name: 'Ангелина Бараненко',
     role: 'Маркетолог',
     skills: [
       'Маркетинговые стратегии',
