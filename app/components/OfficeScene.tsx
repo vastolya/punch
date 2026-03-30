@@ -36,7 +36,7 @@ export default function OfficeScene({ scale = 0.1 }: { scale?: number }) {
 
       if (width <= 768) {
         // Мобильные устройства
-        setCameraPosition([1, 1, 1]);
+        setCameraPosition([10, 10, 10]);
         setFov(60);
       } else if (width <= 1024) {
         // Планшеты
@@ -45,7 +45,7 @@ export default function OfficeScene({ scale = 0.1 }: { scale?: number }) {
         0.5;
       } else {
         // Десктоп
-        setCameraPosition([1.5, 1.5, 1.5]);
+        setCameraPosition([14, 14, 14]);
         setFov(50);
       }
     };

@@ -10,7 +10,7 @@ export default function Home() {
       <LoadingScreen />
 
       {/* Hero Section with 3D Scene */}
-      <div className="h-[60vh] md:h-[clamp(500px,26.875vw,900px)] relative max-w-[1920px] mx-auto">
+      <div className="h-[35vh] md:h-[clamp(400px,26.875vw,900px)] relative max-w-[1920px] mx-auto">
         <p className="top-6 left-6 md:top-[clamp(2.5rem,4.167vw,5rem)] md:left-[clamp(2.5rem,4.167vw,5rem)] font-compacta font-normal text-[2rem] md:text-[clamp(1.75rem,2.5vw,3rem)] leading-[1.08] tracking-normal text-center align-middle uppercase absolute z-10">
           панч
         </p>
